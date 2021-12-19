@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     private EditText upno,ucode;
     private Button uverify;
+    String mverficationId;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
+        }
+
+        public void onCodeSent(String verficationId,PhoneAuthProvider.ForceResendingToken forceResendingToken){
+            super.onCodeSent(verficationId,forceResendingToken);
+            mverficationId=verficationId;
+            uverify.setText("Verify code");
         }
     };
 
@@ -84,4 +91,6 @@ public class MainActivity extends AppCompatActivity {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(upno.getText().toString(),60, TimeUnit.SECONDS, this,mCallbacks);
 
     }
+
+
 }
