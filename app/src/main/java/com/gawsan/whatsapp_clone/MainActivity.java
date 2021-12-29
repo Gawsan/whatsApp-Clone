@@ -91,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(upno.getText().toString(),60, TimeUnit.SECONDS, this,mCallbacks);
 
     }
+    
+        private void startCall(){
+        //calling option added
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(upno.getText().toString(),60, TimeUnit.SECONDS, this,mCallbacks);
+
+    }
+
 
 
 }
